@@ -3,11 +3,27 @@ import { useState, useEffect } from 'react';
 import PromptResults from './PromptResults';
 
 const Container = () => {
+
+    const useLocalStorage = (storageKey, defaultState) => {
+        const [value, setValue] = useState(
+          JSON.parse(localStorage.getItem(storageKey)) ?? defaultState
+        );
+    
+        useEffect(() => {
+          localStorage.setItem(storageKey, JSON.stringify(value));
+        }, [value, storageKey]);
+    
+        return [value, setValue];
+      };
+  
+
     const [formInput, setFormInput] = useState("");
     const [result, setResult] = useState(null);
     const [error, setError] = useState("")
-    const [requestResponse, setRequestResponse] = useState([])
+    const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
     const key = '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'  
+
+
     
     const generatePrompt = (formText) => {
      
@@ -53,15 +69,16 @@ const Container = () => {
     
       return (
         <div>
-          <form onSubmit={onSubmit}>
+          <form className='input-form' onSubmit={onSubmit}>
             <input
               type="text"
               name="form"
+              className='form-input'
               placeholder="Enter a prompt for the AI"
               value={formInput}
               onChange={(e) => setFormInput(e.target.value)}
             />
-            <input type="submit" value="Generate AI Text" />
+            <button type="submit" value="Generate AI Text">Generate AI Text</button>
           </form> 
           <div>
              {requestResponse.length ? <PromptResults deletePrompt={deletePrompt} requestResponse={requestResponse} /> : ""}
