@@ -22,6 +22,8 @@ const Container = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
+    const key = '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'
+
 
     const generatePrompt = (formText) => {
      
@@ -44,7 +46,7 @@ const Container = () => {
           mode: 'cors',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+            Authorization: `Bearer ${key}`,
           },
           body: JSON.stringify(data),
          });
