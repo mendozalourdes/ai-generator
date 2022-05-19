@@ -17,12 +17,11 @@ const Container = () => {
       }; 
   
 
-    const [formInput, setFormInput] = useState("");
+    const [formInput, setFormInput] = useState(null);
     const [result, setResult] = useState(null);
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
-    let key = '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'
 
     const generatePrompt = (formText) => {
      
@@ -31,7 +30,7 @@ const Container = () => {
     
       const data = {
         prompt: generatePrompt(formInput),
-        temperature: 0.5,
+        temperature: 1,
         max_tokens: 64,
         top_p: 1.0,
         frequency_penalty: 0.0,
@@ -42,10 +41,10 @@ const Container = () => {
        const getAIData = async () => {
         const response = await fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
           method: "POST",
-        mode: 'cors',
+          mode: 'cors',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${key}`,
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
           },
           body: JSON.stringify(data),
          });
@@ -79,9 +78,10 @@ const Container = () => {
               className='form-input'
               placeholder="Enter a prompt for the AI"
               value={formInput}
+              required
               onChange={(e) => setFormInput(e.target.value)}
             />
-            <button type="submit" value="Generate AI Text">Generate AI Text</button>
+            <button   disabled={!formInput} type="submit" value="Generate AI Text">Generate AI Text</button>
           </form> 
           <div>
              {requestResponse.length ? <PromptResults loading={loading} deletePrompt={deletePrompt} requestResponse={requestResponse} /> : ""}
