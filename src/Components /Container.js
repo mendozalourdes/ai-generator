@@ -22,7 +22,6 @@ const Container = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
-    const key = process.env.REACT_APP_OPENAI_API_KEY
 
     const generatePrompt = (formText) => {
      
@@ -42,9 +41,10 @@ const Container = () => {
        const getAIData = async () => {
         const response = await fetch("https://api.openai.com/v1/engines/text-curie-001/completions", {
           method: "POST",
+          mode: 'cors',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${key}`,
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
           },
           body: JSON.stringify(data),
          });
