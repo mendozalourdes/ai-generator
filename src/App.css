@@ -11,12 +11,14 @@ html {
 }
 .app-header{
   font-size: 5em;
+  padding: 5%;
 }
+
 
 input {
   font-family: "Nunito", sans-serif;
-  width: 40em;
-  height: 15em;
+  width: 50vw;
+  height: 20vh;
   font-size: 15px;
   border-radius: 20px;
   box-shadow: blue 0px 0px 0px 2px inset, rgb(255, 255, 255) 10px -10px 0px -3px, rgb(31, 193, 27) 10px -10px, rgb(255, 255, 255) 20px -20px 0px -3px, rgb(255, 217, 19) 20px -20px, rgb(255, 255, 255) 30px -30px 0px -3px, rgb(255, 156, 85) 30px -30px, rgb(255, 255, 255) 40px -40px 0px -3px, rgb(255, 85, 85) 40px -40px;
@@ -98,7 +100,7 @@ button:active {
   border-radius: 15px;
   margin: 2em 2em 2em 2em;
   width: 60%;
-  height: 10em;
+  height: 50%;
   background-color: rgb(176, 230, 230);
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
@@ -107,4 +109,16 @@ button:active {
   display: flex;
   justify-content: end;
   flex-direction: row;
+}
+
+svg{
+  width: 1200vw;
+  height: 100vh;
+  margin: 20px;
+  display:inline-block;
+}
+
+img {
+  height: 30%;
+  width: 30%;
 }
