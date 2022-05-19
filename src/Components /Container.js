@@ -22,7 +22,6 @@ const Container = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
-    const key = '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'
 
 
     const generatePrompt = (formText) => {
@@ -46,7 +45,7 @@ const Container = () => {
           mode: 'cors',
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${key}`,
+            Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
           },
           body: JSON.stringify(data),
          });
@@ -83,7 +82,7 @@ const Container = () => {
               required
               onChange={(e) => setFormInput(e.target.value)}
             />
-            <button   disabled={!formInput} type="submit" value="Generate AI Text">Generate AI Text</button>
+            <button disabled={!formInput} type="submit" value="Generate AI Text">Generate AI Text</button>
           </form> 
           <div>
              {requestResponse.length ? <PromptResults loading={loading} deletePrompt={deletePrompt} requestResponse={requestResponse} /> : ""}
