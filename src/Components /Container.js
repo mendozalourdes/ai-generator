@@ -14,14 +14,15 @@ const Container = () => {
         }, [value, storageKey]);
     
         return [value, setValue];
-      };
+      }; 
   
 
     const [formInput, setFormInput] = useState("");
     const [result, setResult] = useState(null);
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
-    const key = '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'  
+    const key = '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'  
 
 
     
@@ -52,12 +53,15 @@ const Container = () => {
     let allData = await response.json()
         setResult(allData.choices[0].text);
         setFormInput(""); 
+        setLoading(false)
         setRequestResponse([ {"id": requestResponse.length, [formInput]: allData.choices[0].text}, ...requestResponse])
     }
 
     const onSubmit = (event) => {
         event.preventDefault();
         getAIData();
+        setLoading(true)
+
     }
 
     const deletePrompt = (id) => {
@@ -81,7 +85,7 @@ const Container = () => {
             <button type="submit" value="Generate AI Text">Generate AI Text</button>
           </form> 
           <div>
-             {requestResponse.length ? <PromptResults deletePrompt={deletePrompt} requestResponse={requestResponse} /> : ""}
+             {requestResponse.length ? <PromptResults loading={loading} deletePrompt={deletePrompt} requestResponse={requestResponse} /> : ""}
           </div>
       </div>
     );
