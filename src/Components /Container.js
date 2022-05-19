@@ -22,7 +22,7 @@ const Container = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
-    const key = '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'  
+    const number = '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'  
 
 
     
@@ -46,7 +46,7 @@ const Container = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${key}`,
+            Authorization: `Bearer ${number}`,
           },
           body: JSON.stringify(data),
          });
