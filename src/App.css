@@ -90,8 +90,6 @@ button:active {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* height: 70em; */
-  /* width: 50em; */
 }
 
 .one-result {
