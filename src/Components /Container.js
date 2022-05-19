@@ -22,10 +22,8 @@ const Container = () => {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
-    const number = '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'  
+    const key = process.env.REACT_APP_OPENAI_API_KEY
 
-
-    
     const generatePrompt = (formText) => {
      
         return formText;
@@ -46,7 +44,7 @@ const Container = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${number}`,
+            Authorization: `Bearer ${key}`,
           },
           body: JSON.stringify(data),
          });
