@@ -23,7 +23,6 @@ const Container = () => {
     const [loading, setLoading] = useState(null)
     const [requestResponse, setRequestResponse] = useLocalStorage("requestResponse", []);
 
-
     const generatePrompt = (formText) => {
      
         return formText;
@@ -32,7 +31,7 @@ const Container = () => {
       const data = {
         prompt: generatePrompt(formInput),
         temperature: 1,
-        max_tokens: 64,
+        max_tokens: 94,
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0,
