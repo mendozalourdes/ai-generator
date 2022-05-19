@@ -1,7 +1,8 @@
 import React from 'react';
 import OneResult from './OneResult';
+import loadingGif from  './../Images/loadingGif.svg' ;
 
-const PromptResults = ({requestResponse, deletePrompt}) => {
+const PromptResults = ({requestResponse, deletePrompt, loading}) => {
 
 let everyPromptResult = requestResponse.map((result, i) => {
     return (
@@ -15,10 +16,9 @@ let everyPromptResult = requestResponse.map((result, i) => {
         )
 })
 
-
     return (
         <div className='prompts-container'>
-        {everyPromptResult}
+        {!loading ? everyPromptResult : <img src={loadingGif} alt="loading"></img>}
       </div>
     );
 };
